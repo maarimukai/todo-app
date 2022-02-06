@@ -1,7 +1,6 @@
 <template>
-    <InputText v-model="description"/>
-    <div class="div-btn">
-        <Button @click="cancel" class="btn-back">Voltar</Button>
+    <div class="div-item">
+        <InputText v-model="description"/>
         <Button @click="saveTodo">Salvar</Button>
     </div>
 </template>
@@ -10,7 +9,8 @@
 export default {
     data() {
         return {
-            description: ""
+            description: "",
+            checked: false
         }
     },
     props: {
@@ -19,6 +19,7 @@ export default {
     created() {
        if (this.todo) {
            this.description = this.todo.description;
+           this.checked = false;
        }
     },
     methods: {
@@ -26,19 +27,15 @@ export default {
             this.$emit("cancel");
         },
         saveTodo() {
-            this.$emit("saveTodo", { ...this.todo,      description: this.description });
+            this.$emit("saveTodo", { ...this.todo, description: this.description, checked: this.checked });
         }
     }
 }
 </script>
 
 <style scoped>
-    .div-btn {
-        margin-top: 1rem;
+    .div-item {
+        display: flex;
+        justify-content: center;
     }
-
-    .btn-back {
-        margin-right: 1rem;
-    }
-
 </style>

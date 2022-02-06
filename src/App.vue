@@ -1,19 +1,18 @@
 <template>
-  <h1>TODO</h1>
-  <div v-if="!editMode">
-    <Button @click="newTodo" >Novo</Button>
+  <div v-if="!editMode" class="div-todo">
+    <h1>TODO</h1>
+    <todo-item
+      class="todo-item" 
+      @saveTodo="saveTodo" 
+      :todo="todo" 
+    />
     <todo-list 
-      :todos="todos" 
+      :todos="todos"
+      @toggleTodo="toggleTodo" 
       @deleteTodo="deleteTodo" 
       @editTodo="editTodo"
     />
   </div>
-  <todo-item 
-    v-if="editMode" 
-    @cancel="cancel" 
-    @saveTodo="saveTodo" 
-    :todo="todo" 
-  />
 </template>
 
 <script>
@@ -63,6 +62,14 @@ export default {
     editTodo(index) {
       this.todo = this.todos[index];
       this.editMode = true;
+    },
+    toggleTodo(index, checked) {
+      let todo = this.todos[index]
+      todo.checked = !todo.checked
+      this.todos[index] = todo
+      console.log(this.todos[index])
+      console.log(checked)
+      localStorage.setItem("todos", JSON.stringify(this.todos));
     }
   },
   created() {
@@ -82,6 +89,19 @@ export default {
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     color: #2c3e50;
+    display: flex;
+    justify-content: center;
+  }
+
+  .div-todo {
+    width: 50vw;
+    height: 80vh;
+    background-color: lightgray;
+    border-radius: 15px;
+  }
+
+  h1 {
+    text-align: center;
   }
 
 </style>
