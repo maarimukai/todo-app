@@ -6,12 +6,16 @@
       @saveTodo="saveTodo" 
       :todo="todo" 
     />
-    <todo-list 
-      :todos="todos"
-      @toggleTodo="toggleTodo" 
-      @deleteTodo="deleteTodo" 
-      @editTodo="editTodo"
-    />
+    <div class="todo-list">
+      <div class="todo-item field-checkbox" v-for="(todo, index) in todos" :key="index">
+        <todo-list 
+          :todo="todo"
+          @toggleTodo="toggleTodo" 
+          @deleteTodo="deleteTodo" 
+          @editTodo="editTodo"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -63,12 +67,11 @@ export default {
       this.todo = this.todos[index];
       this.editMode = true;
     },
-    toggleTodo(index, checked) {
-      let todo = this.todos[index]
-      todo.checked = !todo.checked
-      this.todos[index] = todo
-      console.log(this.todos[index])
-      console.log(checked)
+    toggleTodo(id) {
+      console.log(id);
+      let todo = this.todos.find((item) => item.id === id);
+      console.log(todo);
+      todo.checked = !todo.checked;
       localStorage.setItem("todos", JSON.stringify(this.todos));
     }
   },
@@ -104,4 +107,14 @@ export default {
     text-align: center;
   }
 
+  .todo-list {
+      margin: 1rem;
+  }
+
+  .todo-item {
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      border-bottom: 1px solid whitesmoke;
+  }
 </style>
