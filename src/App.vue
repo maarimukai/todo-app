@@ -1,17 +1,20 @@
 <template>
   <div v-if="!editMode" class="div-todo">
-    <h1>TODO</h1>
+    <h1>T O D O</h1>
     <todo-item
-      class="todo-item" 
+      class="todo-list" 
       @saveTodo="saveTodo" 
       :todo="todo" 
     />
-    <todo-list 
-      :todos="todos"
-      @toggleTodo="toggleTodo" 
-      @deleteTodo="deleteTodo" 
-      @editTodo="editTodo"
-    />
+    <div class="div-list">
+        <div class="todo-item field-checkbox" v-for="(todo, index) in todos" :key="index">
+          <todo-list
+            :todo="todo"
+            @toggleTodo="toggleTodo" 
+            @deleteTodo="deleteTodo" 
+          />
+        </div>
+    </div>
   </div>
 </template>
 
@@ -53,22 +56,20 @@ export default {
       }
       localStorage.setItem("todos", JSON.stringify(this.todos));
       this.editMode = false;
-
     },
     deleteTodo(index) {
       this.todos.splice(index, 1);
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
-    editTodo(index) {
-      this.todo = this.todos[index];
-      this.editMode = true;
-    },
-    toggleTodo(index, checked) {
-      let todo = this.todos[index]
-      todo.checked = !todo.checked
-      this.todos[index] = todo
-      console.log(this.todos[index])
-      console.log(checked)
+    // editTodo(index) {
+    //   this.todo = this.todo[index];
+    //   this.editMode = true;
+    // },
+    toggleTodo(id) {
+      console.log(id);
+      let todo = this.todos.find((item) => item.id === id);
+      console.log(todo);
+      todo.checked = !todo.checked;
       localStorage.setItem("todos", JSON.stringify(this.todos));
     }
   },
@@ -86,22 +87,47 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    color: #2c3e50;
+    font-family: 'Patrick Hand', cursive;
+    color: #242424;
     display: flex;
     justify-content: center;
   }
 
-  .div-todo {
-    width: 50vw;
-    height: 80vh;
-    background-color: lightgray;
-    border-radius: 15px;
+  body {
+    background-color: #171722;
   }
 
+
   h1 {
+    color: antiquewhite;
     text-align: center;
+    font-size: 40px;
+  }
+
+  .todo-list {
+    margin-block: 1.5rem;
+  }
+
+  .div-list {
+    width: 50vw;
+    height: 80vh;
+    background-image: url(https://i.pinimg.com/564x/63/59/91/63599123d7f0048709e3875384f1a156.jpg);
+    background-position: center;
+    background-size: 100%;
+    border-radius: 15px;
+    padding-top: 18px;
+  }
+
+  .todo-item {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
 </style>
