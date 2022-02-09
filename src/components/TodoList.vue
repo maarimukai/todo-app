@@ -7,14 +7,9 @@
         @change="$emit('toggleTodo', todo.id)"
     />  
     <label class="todo-label" v-bind:class="{ checked: todo.checked }" :for="todo">{{ todo.description }}</label>
-    <!-- <Button 
-        icon="pi pi-pencil" 
-        class="p-button-rounded p-button-text" 
-        @click="$emit('editTodo', index)" 
-    /> -->
     <Button 
         icon="pi pi-trash" 
-        class="p-button-rounded p-button-text" 
+        class="p-button-rounded p-button-text btn-trash" 
         @click="$emit('deleteTodo', index)"
     />
 </template>
@@ -49,14 +44,16 @@ export default {
     
     .todo-label {
         flex-grow: 1;
+        width: 30vw;
         margin-left: 5px;
     }
 
     .todo-label.checked {
         text-decoration: line-through;
+        color: darkgray;
     }
 
-    Button {
+    .btn-trash {
         color: #ec5564 !important;
     }
 </style>

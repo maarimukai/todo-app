@@ -11,7 +11,7 @@
           <todo-list
             :todo="todo"
             @toggleTodo="toggleTodo" 
-            @deleteTodo="deleteTodo" 
+            @deleteTodo="deleteTodo"
           />
         </div>
     </div>
@@ -36,13 +36,6 @@ export default {
     }
   },
   methods: {
-    newTodo() {
-      this.todo = null;
-      this.editMode = true;
-    },
-    cancel(){
-      this.editMode = false;
-    },
     saveTodo(todo) {
       if (todo.id) {
         const index = this.todos.findIndex((item) => item.id === todo.id);
@@ -61,10 +54,6 @@ export default {
       this.todos.splice(index, 1);
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
-    // editTodo(index) {
-    //   this.todo = this.todo[index];
-    //   this.editMode = true;
-    // },
     toggleTodo(id) {
       console.log(id);
       let todo = this.todos.find((item) => item.id === id);
@@ -105,10 +94,11 @@ export default {
     color: antiquewhite;
     text-align: center;
     font-size: 40px;
+    font-weight: bold;
   }
 
   .todo-list {
-    margin-block: 1.5rem;
+    margin-block: 1rem;
   }
 
   .div-list {
@@ -128,6 +118,7 @@ export default {
     justify-items: center;
     padding-left: 20px;
     padding-right: 20px;
+    word-break: break-word;
   }
 
 </style>

@@ -23,9 +23,6 @@ export default {
        }
     },
     methods: {
-        cancel() {
-            this.$emit("cancel");
-        },
         saveTodo() {
             this.$emit("saveTodo", { ...this.todo, description: this.description, checked: this.checked });
         }
@@ -43,14 +40,19 @@ export default {
     }
 
     .input {
+        font-family: 'Patrick Hand', cursive !important;
+        font-size: 20px;
         width: 275px;
         border: none;
         border-radius: 20px;
         margin-right: 15px;
+        padding-left: 20px;
         opacity: 0.8;
     }
 
     Button {
         border-radius: 45px;
+        font-size: 20px;
+        font-weight: bold;
     }
 </style>
