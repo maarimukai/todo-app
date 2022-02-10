@@ -1,8 +1,8 @@
 <template>
-    <div class="div-item">
+    <form class="div-item" @submit.prevent="saveTodo">
         <InputText class="input" v-model="description"/>
-        <Button @click="saveTodo">+</Button>
-    </div>
+        <Button type="submit" >+</Button>
+    </form>
 </template>
 
 <script>
@@ -23,8 +23,13 @@ export default {
        }
     },
     methods: {
-        saveTodo() {
+        saveTodo(event) {
             this.$emit("saveTodo", { ...this.todo, description: this.description, checked: this.checked });
+             event.preventDefault();
+ 
+             this.description = '';
+ 
+             event.target.reset();
         }
     }
 }
@@ -47,7 +52,7 @@ export default {
         border-radius: 20px;
         margin-right: 15px;
         padding-left: 20px;
-        opacity: 0.8;
+        opacity: 0.9;
     }
 
     Button {
@@ -55,4 +60,14 @@ export default {
         font-size: 20px;
         font-weight: bold;
     }
+
+    .p-button{
+        background-color: #3a405a;
+        border: 1px solid #3a405a;
+    }
+
+    .p-button:enabled:hover {
+        background-color: #3a405a;
+    }
+
 </style>

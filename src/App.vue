@@ -6,14 +6,14 @@
       @saveTodo="saveTodo" 
       :todo="todo" 
     />
-    <div class="div-list">
-        <div class="todo-item field-checkbox" v-for="(todo, index) in todos" :key="index">
-          <todo-list
-            :todo="todo"
-            @toggleTodo="toggleTodo" 
-            @deleteTodo="deleteTodo"
-          />
-        </div>
+    <div class="div-list scroller">
+      <div class="todo-item field-checkbox" v-for="(todo, index) in todos" :key="index">
+            <todo-list
+              :todo="todo"
+              @toggleTodo="toggleTodo" 
+              @deleteTodo="deleteTodo"
+            />
+      </div>
     </div>
   </div>
 </template>
@@ -80,21 +80,25 @@ export default {
 
   #app {
     font-family: 'Patrick Hand', cursive;
-    color: #242424;
+    color: #2a3047;
     display: flex;
     justify-content: center;
   }
 
   body {
-    background-color: #171722;
+    /* background-image: linear-gradient(to bottom right, #9708cc, #43cbff); */
+    /* background-image: linear-gradient(to bottom right, #0e5cad, #79f1a4); */
+    /* background-image: linear-gradient(to bottom right, #9f44d3, #e2b0ff); */
+    background-image: linear-gradient(to bottom right, #f02fc2, #6094ea);
   }
 
-
   h1 {
-    color: antiquewhite;
+    color: #ffffff;
+    text-shadow: 1px 1px 20px #2a3047; 
     text-align: center;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
+    margin-bottom: 20px;
   }
 
   .todo-list {
@@ -109,15 +113,35 @@ export default {
     background-size: 100%;
     border-radius: 15px;
     padding-top: 18px;
+    overflow-y: scroll;
+  }
+
+  .div-list::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .div-list::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+  }
+
+  .div-list::-webkit-scrollbar-thumb:hover {
+    background: #3a405a; 
+  }
+
+  .scroller {
+    overflow-y: scroll;
+    scrollbar-color: #3a405a #f5f5f5;
+    scrollbar-width: auto;
   }
 
   .todo-item {
+    font-family: 'Patrick Hand', cursive;
     font-size: 22px;
     display: flex;
     align-items: center;
     justify-items: center;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 10px;
     word-break: break-word;
   }
 
