@@ -3,7 +3,7 @@
     <h1>T O D O</h1>
     <todo-item
       class="todo-list" 
-      @saveTodo="saveTodo" 
+      @createTodo="createTodo" 
       :todo="todo" 
     />
     <div class="div-list scroller">
@@ -36,23 +36,21 @@ export default {
     }
   },
   methods: {
-    saveTodo(todo) {
-      if (todo.id) {
-        const index = this.todos.findIndex((item) => item.id === todo.id);
-        this.todos[index] = todo;
-      } else {
-        todo = { id: this.nextId, ...todo };
-        this.todos.push(todo);
+    createTodo(todo) {
+      todo = { id: this.nextId, ...todo };
+      this.todos.push(todo);
 
-        this.nextId++;
-        localStorage.setItem("nextItem", this.nextId);
-      }
+      this.nextId++;
+      localStorage.setItem("nextItem", this.nextId);
+
       localStorage.setItem("todos", JSON.stringify(this.todos));
       this.editMode = false;
     },
-    deleteTodo(index) {
+    deleteTodo(id) {
+      let index = this.todos.findIndex((item) => item.id === id);
       this.todos.splice(index, 1);
       localStorage.setItem("todos", JSON.stringify(this.todos));
+      console.log(index);
     },
     toggleTodo(id) {
       console.log(id);
@@ -131,7 +129,7 @@ export default {
   .scroller {
     overflow-y: scroll;
     scrollbar-color: #3a405a #f5f5f5;
-    scrollbar-width: auto;
+    scrollbar-width: none;
   }
 
   .todo-item {

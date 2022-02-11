@@ -10,7 +10,7 @@
     <Button 
         icon="pi pi-trash" 
         class="p-button-rounded p-button-text btn-trash" 
-        @click="$emit('deleteTodo', index)"
+        @click="$emit('deleteTodo', id)"
     />
 </template>
 

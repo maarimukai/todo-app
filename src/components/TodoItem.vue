@@ -1,5 +1,5 @@
 <template>
-    <form class="div-item" @submit.prevent="saveTodo">
+    <form class="div-item" @submit.prevent="createTodo">
         <InputText class="input" v-model="description"/>
         <Button type="submit" >+</Button>
     </form>
@@ -23,8 +23,8 @@ export default {
        }
     },
     methods: {
-        saveTodo(event) {
-            this.$emit("saveTodo", { ...this.todo, description: this.description, checked: this.checked });
+        createTodo(event) {
+            this.$emit("createTodo", { ...this.todo, description: this.description, checked: this.checked });
              event.preventDefault();
  
              this.description = '';
