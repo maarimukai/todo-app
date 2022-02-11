@@ -32,7 +32,7 @@ export default {
       editMode: false,
       todos: [],
       todo: null,
-      nextId: 1
+      nextId: localStorage.getItem("nextItem") ? localStorage.getItem("nextItem") : 1
     }
   },
   methods: {
