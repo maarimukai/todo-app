@@ -47,7 +47,7 @@ export default {
     .input {
         font-family: 'Patrick Hand', cursive !important;
         font-size: 20px;
-        width: 275px;
+        width: 70vh;
         border: none;
         border-radius: 20px;
         margin-right: 15px;
