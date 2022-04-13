@@ -105,7 +105,7 @@ export default {
 
   .div-list {
     width: 50vw;
-    height: 80vh;
+    height: 68vh;
     background-image: url(https://i.pinimg.com/564x/63/59/91/63599123d7f0048709e3875384f1a156.jpg);
     background-position: center;
     background-size: 100%;
@@ -135,6 +135,7 @@ export default {
   .todo-item {
     font-family: 'Patrick Hand', cursive;
     font-size: 22px;
+    color: #000000;
     display: flex;
     align-items: center;
     justify-items: center;
